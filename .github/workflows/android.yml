@@ -63,7 +63,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run instrumented tests with GMD
-        run: ./gradlew pixel5api31DebugAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true --info --stacktrace
+        run: ./gradlew pixel5api31DebugAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=600 -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true --info --stacktrace
 
       - name: Upload test reports
         if: always()
