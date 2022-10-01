@@ -16,9 +16,10 @@ name: Android CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ gmd ]
   pull_request:
-    branches: [ main ]
+    branches: [ gmd ]
+  workflow_dispatch:
 
 jobs:
 
