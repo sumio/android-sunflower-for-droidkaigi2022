@@ -71,5 +71,10 @@ jobs:
         with:
           name: test-reports
           path: |
-            '*/build/outputs/androidTest-results/'
+            app/build/outputs/androidTest-results/**/*.xml
             '!**/*"*' # Couldn't exclude a file with double quotation. Revisit the path once b/242988834 is fixed
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: always()
+        with:
+          report_paths: app/build/outputs/androidTest-results/**/*.xml
