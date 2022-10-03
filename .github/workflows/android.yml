@@ -44,7 +44,7 @@ jobs:
           name: assemble
           path: assemble.zip
 
-  androidTest:
+  androidTest2:
     needs: build
     runs-on: macOS-latest
     timeout-minutes: 45
@@ -57,13 +57,18 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: malinskiy/action-android/install-sdk@release/0.1.4
 
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run instrumented tests with GMD
-        run: ./gradlew pixel5api31DebugAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=600 -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true --info --stacktrace
+      - name: Run instrumented tests
+        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.4
+        with:
+          cmd: ./gradlew connectedDebugAndroidTest
+          api: 31
+          tag: default
+          abi: x86_64
 
       - name: Upload test reports
         if: always()
